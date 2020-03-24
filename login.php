@@ -58,7 +58,7 @@ $wachtwoord = $_POST['password'];
 if ($naam == 'admin' && $wachtwoord == 'admin'){
     header('location: display.php');
 } elseif ($naam == ''|| $wachtwoord == '') {
-    echo "location: submit.php";
+    echo "<p>Insertion Failed <br/> Some Fields are Blank....!!</p>";
 } else {
     header('location: submit.php');
 }

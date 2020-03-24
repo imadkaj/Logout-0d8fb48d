@@ -33,7 +33,7 @@
 <?php
 
 $host = '127.0.0.1';
-$db   = 'vragen';
+$db   = 'netland';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
@@ -55,7 +55,7 @@ $naam = $_POST['naam'];
 $vraag = $_POST['vraag'];
 
 if ($naam != '' || $vraag != ''){
-    $query = $pdo->query("insert into vragen(naam, vraag) values ('$naam', '$vraag')");
+    $query = $pdo->query("insert into netland(naam, vraag) values ('$naam', '$vraag')");
 } else {
     echo "<p>Insertion Failed <br/> Some Fields are Blank....!!</p>";
 }

@@ -19,7 +19,7 @@
     </div>
 <?php
  $host = '127.0.0.1';
- $db   = 'vragen';
+ $db   = 'netland';
  $user = 'root';
  $pass = '';
  $charset = 'utf8mb4';
@@ -36,7 +36,7 @@
       throw new \PDOException($e->getMessage(), (int)$e->getCode());
  }
 
- $stmt = $pdo->query('SELECT * FROM vragen');
+ $stmt = $pdo->query('SELECT * FROM netland');
  while ($row = $stmt->fetch())
  {
      ?>
