@@ -1,7 +1,59 @@
-.logout
-{
-    font-size: 1em;
-    float: right;
-    height: 50px;
-    width: 100px;
+body {
+    background-image: url('original.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 50px;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+h2 {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.navi {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.nav {
+    margin: 20px;
+    padding: 0px;
+    display: inline;
+    text-decoration: none;
+    font-size: x-large;
+}
+
+a:hover {
+    background-color: darkblue;
+}
+
+form {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
 }

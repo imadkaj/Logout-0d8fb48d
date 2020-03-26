@@ -1,123 +1,44 @@
-<head>
-  <link rel="stylesheet" href="style.css">
-</head>
+<?PHP 
 
-<nav>
-<form action="logout.php" method="post">
-<input class="logout" type="submit" name="submit" value="Logout">
-</form>
-</nav>
-
-<?php
-
-if(!isset($_COOKIE['loggedInUser']))
-{
-header("Location: login.php");
-}
-
-$localhost = 'localhost';
-$db = 'netland';
+$host = '127.0.0.1';
+$db   = 'vragen';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
 
-$dsn = "mysql:host=$localhost;dbname=$db;charset=$charset";
-
-try 
-{
-    $pdo = new PDO($dsn, $user, $pass);
-} 
-catch (\PDOException $e)
-{
-    echo 'error connecting to database :( on line : ' . $e->getMessage();
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+try {
+     $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
-
-
-
-$sql = "SELECT * FROM media";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-
-$media = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-function displaySeries($key)
-{
-    echo 
-    '<tr>' .
-        '<td>' . $key->title . '</td>' .
-        '<td>' . $key->rating . '</td>' .
-        '<td>' . "<a href='details.php?id=$key->id'>details</a>" . '</td>' .
-    '</tr>';
-}
-
-function displayFilms($key)
-{
-    echo 
-    '<tr>' .
-        '<td>' . $key->title . '</td>' .
-        '<td>' . $key->duration . '</td>' .
-        '<td>' . "<a href='details.php?id=$key->id'>details</a>" . '</td>' .
-    '</tr>';
-}
-
-
-
-function display($type,$callback)
-{
-    global $media;
-    foreach ($media as $key) 
-    {
-        if($key->type == $type)
-        {
-            $callback($key);
-        }
-    }
-}
-
-
-
-
 
 ?>
 
-<table>
-<h3>Series</h3>
-<tr>
-<th>Title</th>
-<th>Rating</th>
-</tr>
-<tr>
-<?php display('serie', 'displaySeries'); ?>
-</tr>
-</table>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
 
-<br>
+<div id="form">
+    <h1 class="welkom">welkom</h1>
+    <div class="nav">
+        <ul class="navi">
+            <li class="nav"> <a href="inlog.php" title="naar het inlog scherm">inlog</a></li>
+            <li class="nav"> <a href="aanmelden.php" title="naar het aanmeld scherm">aanmelden</a></li>
+            <li class="nav"> <a href="submit.php" title="naar het submit scherm">submit</a></li>
+        </ul>
+    </div>
+</div>
 
-<form action="create.php" method="get">
-<input type="hidden" name="type" value="serie">
-<input type="submit" name="submit" value="Add serie">
-</form>
-
-<br>
-
-<table>
-<h3>Films</h3>
-<tr>
-<th>Title</th>
-<th>Duur</th>
-</tr>
-<tr>
-<?php display('film', 'displayFilms'); ?>
-</tr>
-</table>
-
-<br>
-
-<form action="create.php" method="get">
-<input type="hidden" name="type" value="film">
-<input type="submit" name="submit" value="Add film">
-</form>
-
-
-
-
+</body>
+</html>

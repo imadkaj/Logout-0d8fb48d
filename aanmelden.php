@@ -6,7 +6,6 @@
 </head>
 <body>
 <div class="maindiv">
-<!--HTML Form -->
 <div class="form_div">
 <div class="title">
 <div class="nav">
@@ -14,14 +13,16 @@
         <li class="nav"> <a href="index.php" title="terug">terug</a></li>
     </ul>
 </div>
-<h2>log hier in</h2>
+<h2>maak hier uw account aan</h2>
 </div>
 <div id="form">
-<form action="inlog.php" method="post">
+<form action="aanmelden.php" method="post">
 <label>naam:</label><br>
 <input class="input" name="username" type="text" value=""><br>
 <label>wachtwoord:</label><br>
 <input class="input" name="password" type="text" value=""><br>
+<label>Email:</label><br>
+<input class="input" name="email" type="text" value=""><br>
 <input class="submit" name="submit" type="submit" value="Insert">
 </form>
 </div>
@@ -53,13 +54,12 @@ try {
 if(isset($_POST['submit'])) { 
     $naam = $_POST['username'];
     $wachtwoord = $_POST['password'];
+    $email = $_POST['email'];
 
-    if ($naam == 'admin' && $wachtwoord == 'admin') {
-        header('location: display.php');
-    } elseif ($naam == ''|| $wachtwoord == '') {
-        echo "<p>Insertion Failed <br/> Some Fields are Blank....!!</p>";
+    if ($naam != '' || $vraag != '') {
+        $query = $pdo->query("insert into members(username, password, email) values ('$naam', '$wachtwoord', '$email')");
     } else {
-        header('location: submit.php');
+        echo "<p>Insertion Failed <br/> Some Fields are Blank....!!</p>";
     }
 }
 
